@@ -1,0 +1,23 @@
+<% @comments = micropost.comments %>
+<% @numberComments = @comments.length %>
+<% if @numberComments > 4 %>
+	<div class="toggle-comments-list">view all <%= @numberComments %> comments</div>
+	<% @comments.each_with_index do |comment, index| %>
+		<% if index < @numberComments - 4 %>
+			<%= render 'microposts/comment_hided', comment: comment, micropost: micropost %>
+		<% else %>
+			<%= render 'microposts/comment', comment: comment, micropost: micropost %>
+		<% end %>
+	<% end %>
+<% else %>
+	<% @comments.each do |comment| %>
+		<%= render 'microposts/comment', comment: comment, micropost: micropost %>
+	<% end %>
+<% end %>
+
+<script type="text/javascript">
+	$(document).on("click", "div.toggle-comments-list", function(){
+		$(this).parent().find(".comment").fadeIn();
+		$(this).fadeOut();
+	});
+</script>
