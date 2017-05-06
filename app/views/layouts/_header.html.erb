@@ -1,0 +1,56 @@
+<nav>
+	<div class="nav-wrapper">
+		<a href="/" class="brand-logo"><%= fa_icon "instagram" %> | Photogram</a>
+		<% if logged_in? %>
+			<%= form_tag users_path, method: "get", class: "users-search" do %>
+				<%= text_field_tag :search, params[:search], class: "search-box", placeholder: "Search..." %>
+			<% end %>
+		<% end %>
+		<ul id="nav-mobile" class="right hide-on-med-and-down">
+			<% if logged_in? %>
+				<li class="dropdown">
+					<a href="#" charset="dropdown-toggle" data-toggle="dropdown">
+						<% count = 0 %>
+						<% current_user.notifications.each do |notification| %>
+							<% if !notification.read %>
+								<% count += 1 %>
+							<% end %>
+						<% end %>
+						<% if count == 0 %>
+							<span class="glyphicon glyphicon-heart" aria-hidden="true"></span>
+						<% else %>
+							<span class="glyphicon glyphicon-heart" style="color: #fa3e3e;" aria-hidden="true"></span>
+						<% end %>
+					</a>
+					<ul class="dropdown-menu notifi-dropdown">
+						<li>Notifications</li>
+						<%= render current_user.notifications.order('id DESC').first(3) %>
+						<li>
+							<%= link_to "View All", notifications_path %>
+						</li>
+					</ul>
+				</li>
+				<li>
+					<%= link_to current_user do %>
+						<span class="glyphicon glyphicon-user" aria-hidden="true"></span>
+					<% end %>
+				</li>
+				<li class="dropdown">
+					<a href="#" class="dropdown-toggle" data-toggle="dropdown">
+						<b class="caret"></b>
+					</a>
+					<ul class="dropdown-menu">
+						<li><%= link_to "Settings", edit_user_path(current_user) %></li>
+						<li><%= link_to "Log out", logout_path, method: "delete" %></li>
+					</ul>
+				</li>
+			<% else %>
+				<% if current_page?(root_path) %>
+					<li><a href="#about-path" onclick="internal_link_click(this)">About</a></li>
+					<li><a href="#portfolio-path" onclick="internal_link_click(this)">Portfolio</a></li>
+					<li><a href="/login">Sign In</a></li>
+				<% end %>
+			<% end %>
+		</ul>
+	</div>
+</nav>
