@@ -15,10 +15,14 @@ class MicropostsController < ApplicationController
 
 	def show
 		@micropost = Micropost.find_by(id: params[:id])
+		if @micropost == nil
+			not_found
+		end
 	end
 
 	def destroy
 		@notifications = Notification.where(micropost_id: @micropost.id)
+		post_id = @micropost.id
 		if @notifications != nil
 			@notifications.each do |notification|
 				notification.destroy
@@ -26,7 +30,11 @@ class MicropostsController < ApplicationController
 		end
 		@micropost.destroy
 		flash[:success] = "Post deleted"
-		redirect_to request.referrer || root_url
+		if request.referrer != "http://localhost:3000/microposts/#{post_id}"
+			redirect_to request.referrer 
+		else
+			redirect_to root_url
+		end
 	end
 
 	private

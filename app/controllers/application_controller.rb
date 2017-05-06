@@ -4,12 +4,16 @@ class ApplicationController < ActionController::Base
 
 	private
 
+	def not_found
+		render file: 'public/404.html', status: :not_found, layout: false
+	end
+
 	# Confirms a logged-in user.
-		def logged_in_user
-			unless logged_in?
-				store_location
-				flash[:danger] = "Please log in"
-				redirect_to login_url
-			end
+	def logged_in_user
+		unless logged_in?
+			store_location
+			flash[:danger] = "Please log in"
+			redirect_to login_url
 		end
+	end
 end
