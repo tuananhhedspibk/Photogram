@@ -1,3 +1,473 @@
 // Place all the styles related to the Users controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+.edit-profile{
+    display: inline-block;
+    height: 100%;
+    width: 100%;
+    background-color: white;
+    input[type=text], input[type=password]{
+        font-size: 1.1em;
+        border: 1px solid #cccccc;
+        padding: 5px 0 5px 12px;
+        width: 95%;
+        height: 28px;
+        line-height: 1.42857143;
+        color: #555555;
+        border-radius: 4px;
+        box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
+    }
+    input[type=password]:focus:not([readonly]) + label{
+        color: black;
+    }
+    input[type=text]:focus:not([readonly])
+    ,input[type=password]:focus:not([readonly]){
+        box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075), 0 0 8px rgba(102, 175, 233, .6);
+        border-color: #66afe9;
+    }
+    label{
+        color: black;
+        font-size: 1.1em;
+    }
+    .left-block-edit{
+        width: 35%;
+        height: 100%;
+        display: inline-block;
+        float: left;
+        padding: 30px 15px 30px 30px;
+        .propic-edit{
+            margin-bottom: 20px;
+            display: inline-block;
+            position: relative;
+            img{
+                width: 270px;
+                height: 270px;
+                border-radius: 6px;
+                float: left;
+            }
+            #upload-pic{
+                display: none;
+            }
+            a.upload-new-pic{
+                opacity: 0;
+                z-index: 2;
+                display: inline-block;
+                font-size: 1.2em;
+                float: left;
+                position: absolute;
+                bottom: 0;
+                left: 0;
+                height: 60px;
+                width: 100%;
+                padding: 20px 20px;
+                color: white;
+                cursor: pointer;
+                text-decoration: none;
+                &:focus, &:hover{
+                    color: white;
+                }
+                .fa-camera{
+                    margin-right: 20px;
+                }
+            }
+        }
+        .propic-edit:hover{
+            .upload-new-pic{
+                opacity: 1;
+                transition: all .5s ease;
+            }
+        }
+        .propic-edit:hover:after{
+            opacity: 1;
+        }
+        .propic-edit:after{
+            background-color: rgba(0, 0, 0, 0.5);
+            content: "";
+            transition: all .3s ease;
+            display: inline-block;
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 60px;
+            border-bottom-left-radius: 6px;
+            border-bottom-right-radius: 6px;
+            opacity: 0;
+        }
+        .name-edit, .email-edit, .gender-edit{
+            display: inline-block;
+            width: 100%;
+        }
+        [type="radio"]:not(:checked) + label, [type="radio"]:checked + label{
+            padding-left: 25px;
+            margin-right: 20px;
+            font-size: 1em;
+            margin-bottom: 10px;
+        }
+    }
+    .right-block-edit{
+        width: 65%;
+        display: inline-block;
+        float: left;
+        height: 100%;
+        padding: 30px 30px 30px 15px;
+        h3{
+            margin-top: 2px;
+            margin-bottom: 19px;
+        }
+        input[type=password]{
+            width: 98%;
+        }
+        .alert{
+            margin-bottom: 37px;
+        }
+        .btn-social-network-list{
+            .btn{
+                margin-right: 5px;
+                text-transform: none;
+                &:hover, &:focus{
+                    color: white;
+                }
+            }
+            .facebook-btn{
+                background-color: #4867aa;
+                &:hover, &:focus{
+                    background-color: #6682bd;
+                }
+            }
+            .google-btn{
+                background-color: #db4437;
+                &:hover, &:focus{
+                    background-color: #e26358;
+                }
+            }
+            .twitter-btn{
+                background-color: #1da1f2;
+                &:hover, &:focus{
+                    background-color: #4fb5f3;
+                }
+            }
+            .linkedin-btn{
+                background-color: #0177b5;
+                &:hover, &:focus{
+                    background-color: #2491ca;
+                }
+            }
+            .fa{
+                margin-right: 5px;
+            }
+        }
+    }
+}
+
+.user-profile{
+    .row{
+        padding: 0 130px;
+    }
+    .avatar{
+        text-align: center;
+        img{
+            border-radius: 50%;
+            width: 150px;
+            height: 150px;
+        }
+    }
+    .name-express{
+        display: inline-block;
+        .name{
+            display: inline-block;
+            font-size: 2.1em;
+            max-width: 320px;
+            word-wrap: break-word;
+            float: left;
+        }
+        .config-area{
+            display: inline-block;
+            float: left;
+            margin-left: 20px;
+            #edit-profile-btn{
+                padding: 10px 25px;
+                display: inline-block;
+                color: #7b7b7b;
+                text-decoration: none;
+                box-shadow: 0 1px 1px 1px #cccccc;
+                background-color: white;
+                font-weight: bold;
+                border-radius: 3px;
+                &:hover{
+                    color: #7b7b7b;
+                }
+            }
+            .follow-btn, .unfollow-btn{
+                text-transform: none;
+                font-weight: bold;
+                padding: 0 25px;
+                letter-spacing: 0.5px;
+                &:focus{
+                    outline: 0;
+                }
+            }
+            .follow-btn{
+                background-color: #3897f0;
+                &:hover{
+                    color: white;
+                }
+            }
+            .unfollow-btn{
+                background-color: white;
+                color: #7b7b7b;
+                &:hover{
+                    color: #7b7b7b;
+                }
+            }
+        }
+    }
+    .user-info-express{
+        .number{
+            a{
+                color: black;
+                text-decoration: none;
+                &:hover{
+                    color: black;
+                }
+            }
+            font-size: 1.2em;
+            display: inline-block;
+            margin-top: 20px;
+            margin-right: 50px;
+        }
+    }
+    .default-content{
+        width: 100%;
+        background-color: white;
+        display: flex;
+        align-items: center;
+        img{
+            width: 380px;
+            height: 380px;
+            display: inline-block;
+        }
+        .quote{
+            font-weight: bold;
+            font-size: 1.1em;
+            width: 100%;
+            text-align: center;
+            .branding-name{
+                font-family: 'Pacifico', cursive;
+                font-size: 2.7em;
+                margin-top: 15px;
+                font-weight: normal;
+            }
+        }
+    }
+    .pic-row{
+        text-align: center;
+        width: 100%;
+        .picture{
+            display: inline-block;
+            float: left;
+            position: relative;
+            cursor: pointer;
+            img{
+                width: 250px;
+                height: 250px;
+            }
+            .img-info{
+                opacity: 0;
+                z-index: 2;
+                color: white;
+                position: absolute;
+                top: 115px;
+                display: inline-block;
+                left: 0;
+                width: 100%;
+                text-align: center;
+                font-size: 1.1em;
+                font-weight: bold;
+                .number-like{
+                    display: inline-block;
+                }
+                .number-comment{
+                    display: inline-block;
+                    margin-left: 25px;
+                }
+            }
+            &:hover:after{
+                opacity: 1;
+            }
+            &:hover{
+                .img-info{
+                    opacity: 1;
+                    transition: all .5s ease;
+                }
+            }
+            &:after{
+                display: inline-block;
+                position: absolute;
+                background-color: rgba(0, 0, 0, 0.3);
+                content: "";
+                top: 0;
+                width: 250px;
+                left: 22px;
+                height: 250px;
+                transition: all .3s ease;
+                opacity: 0;
+            }
+        }
+    }
+    .btn-load-more{
+        background-color: #3cac94;
+        border: none;
+        border-radius: 5px;
+        box-shadow: 0 1px 1px 1px #cccccc;
+        outline: 0;
+        color: white;
+        font-size: 1.1em;
+        padding: 8px 30px;
+        &:hover{
+            background-color: #3cac94;
+        }
+    }
+}
+
+.index-users{
+    .container{
+        padding: 35px 0;
+        position: relative;
+        .search-filter{
+            background-color: white;
+            box-shadow: 0 1px 1px 2px #efefef;
+            width: 450px;
+            float: left;
+            display: inline-block;
+            position: absolute;
+            top: 35px;
+            .title{
+                font-weight: bold;
+                font-size: 1.2em;
+                width: 100%;
+                background-color: #eeeeee;
+                padding: 12px 20px;
+            }
+            form{
+                display: inline-block;
+                width: 100%;
+                padding: 20px;
+                label{
+                    font-size: 1em;
+                }
+                input[type="text"]{
+                    color: #555555;
+                    font-size: 1em;
+                    width: 400px;
+                    padding-left: 10px;
+                    border: solid 1px #a9a9a9;
+                    border-radius: 3px;
+                    margin-bottom: 10px;
+                    &:focus{
+                        outline: 0;
+                        border-color: #66afe9;
+                        box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075),
+                        0 0 8px rgba(102, 175, 233, 0.6);
+                    }
+                }
+                input[type="submit"]{
+                    text-transform: none;
+                    margin-top: 5px;
+                    width: 100%;
+                }
+            }
+        }
+        .list-users{
+            float: right;
+            text-align: center;
+            width: calc(100% - 450px);
+            display: inline-block;
+            .container{
+                text-align: left;
+                padding-top: 0;
+                width: 100%;
+                padding-left: 45px;
+                .user{
+                    display: inline-block;
+                    width: 100%;
+                    padding: 30px 30px;
+                    background-color: white;
+                    box-shadow: 0 1px 1px 2px #efefef;
+                    .avatar{
+                        float: left;
+                        display: inline-block;
+                        img{
+                            border-radius: 50%;
+                            width: 90px;
+                            height: 90px;
+                        }
+                    }
+                    .user-info{
+                        float: left;
+                        display: inline-block;
+                        margin-left: 35px;
+                        .name{
+                            display: inline-block;
+                            font-size: 1.8em;
+                            max-width: 320px;
+                            word-wrap: break-word;
+                            float: left;
+                            a{
+                                color: black;
+                                text-decoration: none;
+                                &:hover{
+                                    text-decoration: none;
+                                    color: black;
+                                }
+                            }
+                        }
+                        .info-detail{
+                            display: inline-block;
+                            margin-top: 15px;
+                            .number-post, .number-following, .number-follower{
+                                cursor: pointer;
+                                a{
+                                    color: black;
+                                    text-decoration: none;
+                                    &:hover{
+                                        color: black;
+                                    }
+                                }
+                                display: inline-block;
+                                float: left;
+                                font-size: 1.1em;
+                                margin-right: 10px;
+                            }
+                        }
+                    }
+                    .follow-form{
+                        float: right;
+                        .follow-btn, .unfollow-btn{
+                            text-transform: none;
+                            font-weight: bold;
+                            padding: 0 25px;
+                            letter-spacing: 0.5px;
+                            &:focus{
+                                outline: 0;
+                            }
+                        }
+                        .follow-btn{
+                            background-color: #3897f0;
+                            &:hover{
+                                color: white;
+                            }
+                        }
+                        .unfollow-btn{
+                            background-color: white;
+                            color: #7b7b7b;
+                            &:hover{
+                                color: #7b7b7b;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
