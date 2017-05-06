@@ -1,0 +1,39 @@
+<% provide(:title, "All users") %>
+<div class="index-users">
+	<div class="container">
+		<div class="search-filter">
+			<div class="title">Users search</div>
+			<%= form_tag users_path, method: "get" do %>
+				<%= text_field_tag :search, nil, {placeholder: "Luna Lovegood"} %>
+				<%= submit_tag "Search", class: "btn btn-primary" %>
+			<% end %>
+		</div>
+		<div class="list-users">
+			<div class="container">
+				<% @users.each do |user| %>
+					<% @user = user %>
+					<%= render user %>
+				<% end %>
+			</div>
+			<%= will_paginate @users, class: "pagination-users" %>
+		</div>
+	</div>
+</div>
+
+<script type="text/javascript">
+	$(function() {
+		if ($('.pagination-users').length) {
+			$(window).scroll(function() {
+				var url = $('.pagination-users .next_page').find("a").attr('href');
+				if (url && url != '#' && $(window).scrollTop() > $(document).height() - $(window).height() - 10) {
+					$('.pagination-users').html(
+						"<i class='fa fa-spinner fa-spin fa-3x fa-fw'></i>"
+						+ "<span class='sr-only'>Loading...</span>");
+					console.log(url);
+					return $.getScript(url);
+				}
+			});
+			return $(window).scroll();
+		}
+	});
+</script>
